@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
             exit(-1);
         }
         else {
-            printf("Client: " %s, buffer);
+            printf("Client: " %s "\n", buffer);
         }
         close(aconn);                               //close connection
     }    
