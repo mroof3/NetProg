@@ -68,10 +68,9 @@ int main(int argc, char *argv[])
         else {
             printf("Client: " %s, buffer);
         }
-    }
-//close connections
-    
+        close(aconn);                               //close connection
+    }    
 //close socket
-
+    close(lconn);
     return 0;
 }
