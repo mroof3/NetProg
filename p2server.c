@@ -15,11 +15,9 @@ March 5, 2017
 
 int main(int argc, char *argv[])
 {
-    int i, len, num, binder, lconn, aconn;                  //variables
+    int i, len, rc, lconn, aconn;                  //variables
     char buffer[MAXLINE];                               //buffer for messages
     struct sockaddr_in addr;
-
-    //control number of connections
 
     //create a socket to receive incoming connections
     lconn = socket(AF_INET, SOCK_STREAM, 0);           //create socket
@@ -30,13 +28,12 @@ int main(int argc, char *argv[])
     else {                                             //no errors, socket created
         printf("Socket Connected");
     }
-    //bind socket
+//bind socket
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;                         //address family -- IPv4
     addr.sin_addr.s_addr = htonl(INADDR_ANY);          //hostbyte to networkbyte
     addr.sin_port = htons(argc);                       //port no
-    binder = bind(lconn, (struct sockaddr *) &addr, sizeof(addr));
-    if(binder < 0) {
+    if(bind(lconn, (struct sockaddr *) &addr, sizeof(addr)) < 0) {
         perror("Couldnt Bind");
         close(lconn);
         exit(-1);
@@ -44,15 +41,20 @@ int main(int argc, char *argv[])
     else {
         printf("Socket Bound");
     }
-    //server ready
-
-    //wait for connections
-
-    //receive message
-
-    //close connections
+//start listening
+    if(listen(lconn, 10) < 0) {                         //listen for connection
+        perror("Couldnt Find Connection");
+    }
+    else {
+        printf("Found Connection");
+    }    
+//accept connections
     
-    //close socket
+//receive message
+
+//close connections
+    
+//close socket
 
     return 0;
 }
