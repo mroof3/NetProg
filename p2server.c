@@ -22,9 +22,16 @@ int main(int argc, char *argv[])
     //control number of connections
 
     //create a socket to receive incoming connections
-
+    lconn = socket(AF_INET, SOCK_STREAM, 0);           //create socket
+    if(lconn < 0) {
+        perror("Socket Not Created");
+        exit(-1);
+    }
+    else {
+        printf("Socket Connected");
+    }
     //bind socket
-
+    
     //server ready
 
     //wait for connections
