@@ -49,9 +49,26 @@ int main(int argc, char *argv[])
         printf("Found Connection");
     }    
 //accept connections
-    
+    while(1){
+        if(accept(lconn, NULL, NULL) < 0){
+            perror("Couldnt Accept Connection");
+            close(lconn);
+            exit(-1);
+        }
+        else{
+            printf("Accepted Connection");
+        }
 //receive message
-
+        if(recv(aconn, buffer,sizeof(buffer), 0) <= 0) {
+            perror("Couldnt Recieve Message");
+            close(lconn);
+            close(aconn);
+            exit(-1);
+        }
+        else {
+            printf("Client: " %s, buffer);
+        }
+    }
 //close connections
     
 //close socket
